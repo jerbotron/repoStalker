@@ -18,8 +18,11 @@ public final class ImageLoader {
     }
 
     private static ImageCache getImageCache() {
-        if (imageCache == null || imageCache.isExpired()) {
+        if (imageCache == null) {
             imageCache = new ImageCache();
+        } else {
+            if (imageCache.isExpired())
+                imageCache.clear();
         }
         return imageCache;
     }

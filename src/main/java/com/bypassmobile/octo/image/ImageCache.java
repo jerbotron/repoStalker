@@ -11,7 +11,7 @@ import java.util.Map;
 public class ImageCache implements Cache{
 
     private Map<String,Bitmap> cacheMap = new LinkedHashMap<String,Bitmap>();
-    private long CACHE_EXPIRATION_CONSTANT = 300; // seconds
+    private long CACHE_EXPIRATION_CONSTANT = 10; // seconds, set to 5 mins by default
     private long timestamp;
 
     public ImageCache() {
@@ -41,6 +41,7 @@ public class ImageCache implements Cache{
     @Override
     public void clear() {
         cacheMap.clear();
+        timestamp = System.currentTimeMillis()/1000;
     }
 
     boolean isExpired() {
