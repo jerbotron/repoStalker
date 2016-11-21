@@ -119,6 +119,8 @@ public class MainActivity extends BaseActivity {
         recyclerView = (RecyclerView) findViewById(R.id.id_recyclerview_browse_users);
         recyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
         recyclerView.setHasFixedSize(true);
+
+        // initialize to an empty adapter until we actually fetched real user data from the endpoint
         if (recyclerView != null) {
             recyclerView.setAdapter(new EmptyAdapter());
         }
