@@ -3,7 +3,7 @@ package com.bypassmobile.octo.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class User implements Comparable<User> {
 
     @SerializedName("login")
     private final String name;
@@ -22,5 +22,11 @@ public class User {
 
     public String getProfileURL() {
         return profileURL;
+    }
+
+
+    @Override
+    public int compareTo(User user) {
+        return name.toLowerCase().compareTo(user.name.toLowerCase());
     }
 }

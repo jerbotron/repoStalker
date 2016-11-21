@@ -8,12 +8,19 @@ import com.squareup.picasso.Picasso;
 public final class ImageLoader {
 
     private static Picasso singleton;
+    private static ImageCache imageCache;
 
     public static Picasso createImageLoader(Context context){
         if(singleton == null){
-            singleton = new Picasso.Builder(context).memoryCache(new ImageCache()).build();
+            singleton = new Picasso.Builder(context).memoryCache(getImageCache()).build();
         }
-
         return singleton;
+    }
+
+    private static ImageCache getImageCache() {
+        if (imageCache == null || imageCache.isExpired()) {
+            imageCache = new ImageCache();
+        }
+        return imageCache;
     }
 }
